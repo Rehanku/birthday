@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Happy 19th Birthday Ayesha — Surprise</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Fredoka:wght@400;600&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg1:#fff7fb; --bg2:#ffeef6; --accent:#ff6b81; --muted:#5a4a4a; --card:#ffffffcc;
+}
+html,body{height:100%;margin:0;padding:0;font-family:Inter, Fredoka, sans-serif;background:linear-gradient(160deg,var(--bg1),var(--bg2));color:var(--muted);overflow-x:hidden}
+.intro{height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px}
+.intro-inner{max-width:780px}
+h1.title{font-family:'Dancing Script',cursive;font-size:3.2rem;margin:0;color:var(--accent);text-shadow:0 6px 18px rgba(255,107,129,0.12)}
+.lead{font-size:1.05rem;margin:14px 0 0;color:#6b4f4f}
+.heart-row{margin:18px 0;display:flex;gap:12px;align-items:center;justify-content:center}
+.heart-anim{width:120px;height:120px;display:inline-block;transform-origin:center;animation:floaty 3s ease-in-out infinite;filter:drop-shadow(0 10px 30px rgba(255,107,129,0.12))}
+@keyframes floaty{0%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-10px) rotate(3deg)}100%{transform:translateY(0) rotate(-3deg)}}
+.sub{font-size:0.95rem;color:#7a5b5b;margin-top:8px}
+.main{display:block;padding:40px 20px 120px;max-width:980px;margin:0 auto;transform:translateY(-20px)}
+.card{background:var(--card);border-radius:20px;padding:22px;box-shadow:0 10px 30px rgba(255,107,129,0.08);border:1px solid rgba(255,255,255,0.6);margin-bottom:20px}
+.center{display:flex;align-items:center;justify-content:center;flex-direction:column}
+h2{margin:6px 0 12px;color:var(--accent);font-family:'Dancing Script',cursive;font-size:2rem}
+.muted{color:#6a4f4f;line-height:1.6}
+.btn{background:var(--accent);color:#fff;border:none;padding:10px 18px;border-radius:999px;cursor:pointer;font-weight:600;box-shadow:0 8px 24px rgba(255,107,129,0.14)}
+.float-layer{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:hidden}
+.float-photo{position:absolute;width:78px;height:78px;border-radius:50%;object-fit:cover;border:3px solid white;box-shadow:0 8px 20px rgba(0,0,0,0.12);transform:translateY(120vh);opacity:0.95;animation-name:floatUp;animation-iteration-count:infinite;animation-timing-function:linear}
+@keyframes floatUp{0%{transform:translateY(120vh) scale(0.9) rotate(0deg);opacity:0}10%{opacity:0.95}90%{opacity:0.95}100%{transform:translateY(-18vh) scale(1.05) rotate(360deg);opacity:0}}
+.slides{position:relative;z-index:2}
+.big-card{display:flex;gap:18px;align-items:center;padding:18px;border-radius:20px}
+.left{flex:1;min-width:220px}
+.right{flex:1.3}
+.game-wrap{width:100%;height:320px;border-radius:16px;overflow:hidden;position:relative;background:linear-gradient(180deg,#fff,#fff0);display:flex;align-items:center;justify-content:center}
+#gameCanvas{width:100%;height:100%;display:block;background:linear-gradient(180deg,#ffeef6,#fff7fb)}
+.score-badge{position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.9);padding:8px 12px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,0.06);font-weight:600;color:var(--accent)}
+.controls{display:flex;gap:12px;justify-content:center;margin-top:14px}
+@media (max-width:720px){h1.title{font-size:2.4rem}.float-photo{width:62px;height:62px}.game-wrap{height:260px}.left{display:none}}
+</style>
+</head>
+<body>
+
+<div class="float-layer" id="floatLayer"></div>
+
+<section class="intro" id="introSection">
+  <div class="intro-inner card center" style="max-width:760px;z-index:2">
+    <div class="heart-row">
+      <svg class="heart-anim" viewBox="0 0 120 120">
+        <defs>
+          <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#ff9db1"/><stop offset="1" stop-color="#ff6b81"/></linearGradient>
+          <filter id="glow"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <g filter="url(#glow)"><path d="M60 100 C60 100 16 70 32 42 C44 18 60 28 60 28 C60 28 76 18 88 42 C104 70 60 100 60 100 Z" fill="url(#g1)"/></g>
+        <circle cx="60" cy="60" r="10" fill="#ffd54a" opacity="0.9"/>
+      </svg>
+    </div>
+
+    <h1 class="title">Happiest 19th Birthday, Ayesha ❤️</h1>
+    <p class="lead">All the love, small crazy laughs and late-night talks — this day is for you.</p>
+
+    <div style="margin-top:18px;">
+      <button class="btn" id="enterBtn">Open the Surprise</button>
+    </div>
+
+    <p class="sub">(If the audio doesn't start, tap anywhere!)</p>
+  </div>
+</section>
+
+<main class="main" id="mainContent" style="display:none">
+  <!-- Your main content stays unchanged -->
+</main>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" loop autoplay muted>
+  <source src="data:audio/mp3;base64,PASTE_FULL_BASE64_HERE" type="audio/mpeg">
+</audio>
+
+<script>
+/* ========== 7 photos ========== */
+const userPhotos = [
+  "https://i.ibb.co/dwhgqZV4/IMG-4250.jpg",
+  "https://i.ibb.co/991r13jP/IMG-4127.jpg",
+  "https://i.ibb.co/yB7cgZ78/IMG-4117.jpg",
+  "https://i.ibb.co/v44ynnPD/IMG-4092.jpg",
+  "https://i.ibb.co/Jj0ZDkqX/IMG-3882.jpg",
+  "https://i.ibb.co/Kc2WYR2t/IMG-3435.jpg",
+  "https://i.ibb.co/Y4vrNzWB/IMG-3132.jpg"
+];
+
+/* Floating photos */
+function startFloatingPhotos() {
+  const layer = document.getElementById('floatLayer');
+  const emojis = ['❤️','💖','🌸','🌻','✨'];
+  function spawnOne() {
+    const el = document.createElement('img');
+    const usePhoto = Math.random() < 0.85;
+    if (usePhoto) {
+      el.src = userPhotos[Math.floor(Math.random() * userPhotos.length)];
+      el.className = 'float-photo';
+    } else {
+      const emoji = emojis[Math.floor(Math.random()*emojis.length)];
+      const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><rect rx='40' width='100%' height='100%' fill='rgba(255,255,255,0.9)'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='72'>${emoji}</text></svg>`;
+      el.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+      el.className = 'float-photo';
+    }
+    const left = (Math.random()*82 + 6);
+    el.style.left = left + 'vw';
+    const size = Math.floor(Math.random()*22 + 70);
+    el.style.width = size + 'px';
+    el.style.height = size + 'px';
+    const duration = (Math.random()*10 + 12).toFixed(2);
+    el.style.animationDuration = duration + 's';
+    layer.appendChild(el);
+    setTimeout(()=>el.remove(), (parseFloat(duration)+0.6)*1000);
+  }
+  for (let i=0;i<8;i++) setTimeout(spawnOne, i*150);
+  setInterval(spawnOne, 900);
+}
+
+/* Confetti */
+function confettiBurst(){
+  if (typeof confetti === 'function') { confetti({ particleCount: 80, spread: 120, origin:{ y:0.6 }}); }
+}
+
+/* Open surprise */
+document.getElementById('enterBtn').addEventListener('click', openSurprise);
+
+function openSurprise(){
+  document.getElementById('introSection').style.display='none';
+  document.getElementById('mainContent').style.display='block';
+  startFloatingPhotos();
+  const bg = document.getElementById("bgMusic");
+  bg.muted = false;
+  bg.play().catch(()=>{});
+  confettiBurst();
+}
+
+/* 🔊 MOBILE-SAFE AUDIO UNMUTE ON FIRST TOUCH */
+document.addEventListener('click', enableAudioOnce);
+document.addEventListener('touchstart', enableAudioOnce);
+
+function enableAudioOnce() {
+    const bg = document.getElementById("bgMusic");
+    bg.muted = false;
+    bg.play().catch(()=>{});
+    document.removeEventListener('click', enableAudioOnce);
+    document.removeEventListener('touchstart', enableAudioOnce);
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</body>
+</html>
